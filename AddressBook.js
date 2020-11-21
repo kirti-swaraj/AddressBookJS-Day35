@@ -133,4 +133,21 @@ function editContact(fullName,value)
         }        
     }
 }
+// UC 5 : Ability to find a person with name delete it from the array
+deleteContact("Virat Kohli");
+console.log("\nArray details after deletion:")
+addressBook.forEach(contact=>console.log(contact.toString()));
+function deleteContact(fullName)
+{
+    var splitStr=fullName.split(" ");
+    for(let i in addressBook)
+    {
+        if(addressBook[i].firstname==splitStr[0] && addressBook[i].lastname==splitStr[1])
+        {
+            //splice(x,y) removes next y elements from the xth position in an array
+            addressBook.splice(i,1);
+            break;
+        }
+    }
+} 
 
