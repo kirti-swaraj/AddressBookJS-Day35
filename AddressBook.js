@@ -22,7 +22,7 @@ class Contact {
         if (firstNameRegExp.test(firstname))
             this._firstname = firstname;
         else
-            throw 'Invalid first name!';
+        throw 'Invalid first name: '+firstname;
     }
 
     //getter and setter for lastName
@@ -32,37 +32,37 @@ class Contact {
         if (lastNameRegExp.test(lastname))
             this._lastname = lastname;
         else
-            throw 'Invalid last name!';
+        throw 'Invalid last name: '+lastname;
     }
 
     //getter and setter for address
     get address() { return this._address; }
     set address(address) {
-        let addressRegExp = RegExp('^[A-Za-z]{4,}$');
+        let addressRegExp = RegExp('^[A-Za-z ]{4,}[ ]*$');
         if (addressRegExp.test(address))
             this._address = address;
         else
-            throw 'Invalid address!';
+        throw 'Invalid address: '+address;
     }
 
     //getter and setter for city
     get city() { return this._city; }
     set city(city) {
-        let cityRegExp = RegExp('^[A-Za-z]{3,}$');
+        let cityRegExp = RegExp('^[A-Za-z ]{3,}$');
         if (cityRegExp.test(city))
             this._city = city;
         else
-            throw 'Invalid city!';
+            throw 'Invalid city: '+city;
     }
 
     //getter and setter for state
     get state() { return this._state; }
     set state(state) {
-        let stateRegExp = RegExp('^[A-Za-z]{4,}$');
+        let stateRegExp = RegExp('^[A-Za-z ]{4,}$');
         if (stateRegExp.test(state))
             this._state = state;
         else
-            throw 'Invalid state!';
+            throw 'Invalid state: '+state;
     }
 
     //getter and setter for zip
@@ -72,7 +72,7 @@ class Contact {
         if (zipRegExp.test(zip))
             this._zip = zip;
         else
-            throw 'Invalid zip!';
+            throw 'Invalid zip: '+zip;
     }
 
     // getter and setter for PhoneNo
@@ -82,7 +82,7 @@ class Contact {
         if (phoneRegExp.test(phoneNo))
             this._phoneNo = phoneNo;
         else
-            throw 'Invalid phone number!';
+            throw 'Invalid phone number: '+phoneNo;
     }
 
     // getter and setter for email
@@ -92,7 +92,7 @@ class Contact {
         if (emailRegExp.test(email))
             this._email = email;
         else
-            throw 'Invalid email!';
+            throw 'Invalid email: '+email;
     }
 
     // overriding toString() method
@@ -100,10 +100,16 @@ class Contact {
         return "\nFirstName: " + this.firstname + "\nLastName: " + this.lastname + "\nAddress: " + this.address + "\nCity: " + this.city + "\nState: " + this.state + "\nZip: " + this.zip + "\nPhone Number: " + this.phoneNo + "\nEmail: " + this.email;
     }
 }
+// UC 3 : New address book array to store contacts
+let addressBook = new Array();
 
 try {
     contact = new Contact("Kirti", "Swaraj", "kgsdf", "Nawada", "Bihar", "674 678", "91 7435678654", "sk@gmail.com.org");
-    console.log(contact.toString());
+    addressBook.push(contact);
+    addressBook.push(new Contact("Virat", "Kohli", "Chinnaswamy", "Bangalore", "Karnataka", "345 678", "91 8765432345", "vs@gmail.com"));
+    addressBook.push(new Contact("Gautam", "Gambhir", "Eden Gardens", "Kolkata", "West Bengal", "875 678", "91 2342123456", "gg@gmail.com"));
+    addressBook.push(new Contact("Virendra", "Sehwag", "Firoz Shah Kotla", "New Delhi", "New Delhi", "002 678", "91 5674567890", "vs@gmail.com"));
+    addressBook.forEach(contact=>console.log(contact.toString()));
 }
 catch (e) {
     console.error(e);
