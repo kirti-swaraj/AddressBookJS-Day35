@@ -18,49 +18,81 @@ class Contact {
     //getter and setter for firstName
     get firstname() { return this._firstname; }
     set firstname(firstname) {
-        this._firstname = firstname;
+         let firstNameRegExp = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if (firstNameRegExp.test(firstname))
+            this._firstname = firstname;
+        else
+            throw 'Invalid first name!';
     }
 
     //getter and setter for lastName
     get lastname() { return this._lastname; }
     set lastname(lastname) {
-        this._lastname = lastname;
+        let lastNameRegExp = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if (lastNameRegExp.test(lastname))
+            this._lastname = lastname;
+        else
+            throw 'Invalid last name!';
     }
 
     //getter and setter for address
     get address() { return this._address; }
     set address(address) {
-        this._address = address;
+        let addressRegExp = RegExp('^[A-Za-z]{4,}$');
+        if (addressRegExp.test(address))
+            this._address = address;
+        else
+            throw 'Invalid address!';
     }
 
     //getter and setter for city
     get city() { return this._city; }
     set city(city) {
-        this._city = city;
+        let cityRegExp = RegExp('^[A-Za-z]{3,}$');
+        if (cityRegExp.test(city))
+            this._city = city;
+        else
+            throw 'Invalid city!';
     }
 
     //getter and setter for state
     get state() { return this._state; }
     set state(state) {
-        this._state = state;
+        let stateRegExp = RegExp('^[A-Za-z]{4,}$');
+        if (stateRegExp.test(state))
+            this._state = state;
+        else
+            throw 'Invalid state!';
     }
 
     //getter and setter for zip
     get zip() { return this._zip; }
     set zip(zip) {
-        this._zip = zip;
+        let zipRegExp = RegExp('^[0-9]{3}[ ]*[0-9]{3}$');
+        if (zipRegExp.test(zip))
+            this._zip = zip;
+        else
+            throw 'Invalid zip!';
     }
 
     // getter and setter for PhoneNo
     get phoneNo() { return this._phoneNo; }
     set phoneNo(phoneNo) {
-        this._phoneNo = phoneNo;
+        let phoneRegExp = RegExp('^[0-9]{2}[ ]*[0-9]{10}$');
+        if (phoneRegExp.test(phoneNo))
+            this._phoneNo = phoneNo;
+        else
+            throw 'Invalid phone number!';
     }
 
     // getter and setter for email
     get email() { return this._email; }
     set email(email) {
-        this._email = email;
+        let emailRegExp = RegExp('^[a-zA-Z0-9]+([.+_-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.][a-zA-Z]{3})+([.][a-zA-Z]{2})?$');
+        if (emailRegExp.test(email))
+            this._email = email;
+        else
+            throw 'Invalid email!';
     }
 
     // overriding toString() method
@@ -69,5 +101,10 @@ class Contact {
     }
 }
 
-contact = new Contact("Rohit","Kumar","Wankhede","Mumbai","Maharashtra",674678,4356786543,"rs@gmail.com");
-console.log(contact.toString());
+try {
+    contact = new Contact("Kirti", "Swaraj", "kgsdf", "Nawada", "Bihar", "674 678", "91 7435678654", "sk@gmail.com.org");
+    console.log(contact.toString());
+}
+catch (e) {
+    console.error(e);
+}
