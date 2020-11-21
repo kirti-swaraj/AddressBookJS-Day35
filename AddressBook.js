@@ -114,3 +114,23 @@ try {
 catch (e) {
     console.error(e);
 }
+// UC 4 : Ability to find existing contact person using their name and edit it
+editContact("Virat Kohli","ffyfuy");
+editContact("Virendra Sehwag","Mauritius");
+console.log("Details after updation:")
+addressBook.forEach(contact=>console.log(contact.toString()));
+function editContact(fullName,value)
+{
+    var splitStr=fullName.split(" ");
+    for(let i=0;i<addressBook.length;i++)
+    {
+        //find the contact using name
+        if(addressBook[i].firstname==splitStr[0] && addressBook[i].lastname==splitStr[1])
+        {  
+            //update address of the found contact    
+            addressBook[i].address=value;
+            break;
+        }        
+    }
+}
+
