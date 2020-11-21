@@ -5,6 +5,12 @@ class Contact {
     // constructor
     // Spread operator used to provide multiple dynamic parameters to constructor
     constructor(...param) {
+        //UC 7 refactor
+        if(checkDuplicate(param[0],param[1])!=0)
+        {
+            console.log("Contact with name: "+param[0]+" "+param[1]+" already exists!");
+            return;
+        }
         this.firstname = param[0];
         this.lastname = param[1];
         this.address = param[2];
@@ -108,7 +114,15 @@ try {
     addressBook.push(contact);
     addressBook.push(new Contact("Virat", "Kohli", "Chinnaswamy", "Bangalore", "Karnataka", "345 678", "91 8765432345", "vs@gmail.com"));
     addressBook.push(new Contact("Gautam", "Gambhir", "Eden Gardens", "Kolkata", "West Bengal", "875 678", "91 2342123456", "gg@gmail.com"));
+    addressBook.push(new Contact("Gautam", "Gambhir", "Eden Gardens", "fwrf", "rf Bengal", "875 678", "91 2342123456", "gg@gmail.com"));
     addressBook.push(new Contact("Virendra", "Sehwag", "Firoz Shah Kotla", "New Delhi", "New Delhi", "002 678", "91 5674567890", "vs@gmail.com"));
+    //UC 7 refactor
+    //remove empty elements from array
+    for(let i in addressBook)
+    {
+        if(addressBook[i].firstname==undefined)
+        addressBook.splice(i,1);
+    }
     addressBook.forEach(contact=>console.log(contact.toString()));
 }
 catch (e) {
@@ -153,4 +167,10 @@ function deleteContact(fullName)
 // UC 6 : Find number of contacts in array using reduce()
 let count = addressBook.reduce((count)=>count+1,0);
 console.log("Total no of contacts in array: "+count); 
+// UC 7 : Ability to ensure there is no Duplicate Entry of the same Person in the Address Book
+function checkDuplicate(fname,lname)
+{
+    let count=addressBook.filter(contact => contact.firstname == fname && contact.lastname == lname).reduce(count=>count+1,0);
+    return count;
+}
 
