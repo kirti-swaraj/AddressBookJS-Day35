@@ -150,4 +150,7 @@ function deleteContact(fullName)
         }
     }
 } 
+// UC 6 : Find number of contacts in array using reduce()
+let count = addressBook.reduce((count)=>count+1,0);
+console.log("Total no of contacts in array: "+count); 
 
